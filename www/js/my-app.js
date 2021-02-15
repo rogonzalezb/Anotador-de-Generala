@@ -45,15 +45,19 @@ $$(document).on('page:init', '.page[data-name="juego"]', function (e) {
     console.log(e);
     $$('#muestraJ1').html(jugador1);
     $$('#muestraJ2').html(jugador2);
- $$('.numero').on('click', function() {
-    fnNumeros(this.id);
- });
+
+    //click en celda de puntos
+     $$('.numero').on('click', function() {
+        fnNumeros(this.id);
+     });
+
+
 })
 
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     console.log(e);
-    $$('#btnInicio').on('click', fnNombre);
+    $$('#btnInicio').on('click', fnNombre); 
 })
 
 $$(document).on('page:init', '.page[data-name="fin"]', function (e) {
@@ -70,10 +74,29 @@ function fnNombre () {
 }
 
 
-function fnNumeros(id) {
+function fnNumeros(id) {  //llamada en (linea 50) onclick .numero
+    debugger;
     var valor= id.slice(1);
     valor=parseInt(valor);
-    console.log(valor);
-    app.popup.open('.popup');
-    
+    var cant;
+    // selector de ppvr q abro, selector para marcar altura, boolean
+    app.popover.open(".open-popover" , ".page-current" , "animate");
+    //esto va acá adentro para que funcione, no mover! 
+    $$('.cantDados').on('click', function() {
+       // console.log("presionaste "+this.value);
+        cant=this.value;
+        ponerPuntos(valor,cant);
+        app.popover.close(".popover" , "animate");
+    //
+    });
+}
+
+function ponerPuntos(valor,cant){
+   
+    console.log("-------------------------------------------------------");
+    console.log("valor: "+valor);
+    console.log("cant: "+ cant);
+    var x = cant*valor;
+    console.log("suma de puntos: "+x);
+    console.log("-------------------------------------------------------");
 }
