@@ -28,6 +28,16 @@ var mainView = app.views.create('.view-main');
 
 var jugador1="";
 var jugador2="";
+var valor="";
+var cant="";
+var idActual="";
+var valorFinal=0;
+var servido=0;
+var valorFigura=0;
+var sumaTotal=0;
+var cantDeCeldas=0;
+var total1=0;
+var total2=0;
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
@@ -50,7 +60,40 @@ $$(document).on('page:init', '.page[data-name="juego"]', function (e) {
      $$('.numero').on('click', function() {
         fnNumeros(this.id);
      });
-
+     $$('.cantDados').on('click', function() {
+        cant=this.value;
+        fnCalcular();
+         $$('[id="'+idActual+'"]').html(valorFinal);
+         fnTotal(idActual);
+         fnFin();
+     });
+     $$('.tacha').on('click', function () {
+        $$('[id="'+idActual+'"]').html('X');
+         fnTotal(idActual);
+         fnFin();
+        app.popover.close(".popover" , "animate");
+     })
+     $$('.vacia').on('click', function () {
+        $$('[id="'+idActual+'"]').html('0');
+         fnTotal(idActual);
+         fnFin();
+        app.popover.close(".popover" , "animate");
+     })
+        $$('.figura').on('click', function() {
+            fnFiguras(this.id);
+        });
+        $$('.tipoJuego').on('click', function() {
+            if (this.value == '1') {
+                valorFigura+=5;
+            }
+            if (this.value == '1' && valorFigura==65) {
+                console.log('ganaste todo');
+            }
+            $$('[id="'+idActual+'"]').html(valorFigura);
+            fnTotal(idActual);
+            fnFin();
+            app.popover.close(".popover" , "animate");
+        })
 
 })
 
@@ -70,33 +113,80 @@ function fnNombre () {
     jugador1= $$('#jugador1').val();
     jugador2= $$('#jugador2').val();
     mainView.router.navigate('/juego/');
-
 }
 
 
 function fnNumeros(id) {  //llamada en (linea 50) onclick .numero
-    debugger;
-    var valor= id.slice(1);
+    valor= id.slice(1);
     valor=parseInt(valor);
-    var cant;
+    idActual=id;
     // selector de ppvr q abro, selector para marcar altura, boolean
-    app.popover.open(".open-popover" , ".page-current" , "animate");
+    app.popover.open("[data-popover = 'popUno']", ".page-current" , "animate");
     //esto va acá adentro para que funcione, no mover! 
-    $$('.cantDados').on('click', function() {
-       // console.log("presionaste "+this.value);
-        cant=this.value;
-        ponerPuntos(valor,cant);
+    };
+       function fnCalcular () {
+        cant=parseInt(cant);
+        console.log('valor ' + valor);
+        console.log('cant ' + cant);
+        valorFinal=cant*valor;
+        console.log(valorFinal);
         app.popover.close(".popover" , "animate");
-    //
-    });
-}
+    }
 
-function ponerPuntos(valor,cant){
-   
-    console.log("-------------------------------------------------------");
-    console.log("valor: "+valor);
-    console.log("cant: "+ cant);
-    var x = cant*valor;
-    console.log("suma de puntos: "+x);
-    console.log("-------------------------------------------------------");
-}
+function fnFiguras (id) {
+    app.popover.open("[data-popover = 'popDos']" , ".page-current" , "animate");
+    fig=id.slice(1,3);
+    console.log(fig);
+    idActual=id;
+    switch (fig) {
+        case '7':
+        valorFigura=10;
+        break
+        case '8':
+        valorFigura=20;
+        break
+        case '9':
+        valorFigura=30;
+        break
+        case '10':
+        valorFigura=40;
+        break
+        case '11':
+        valorFigura=60;
+        break
+        default:
+        console.log('entre pero no ando')
+    }}
+    function fnTotal (id) {
+        var suma=0;
+        sumaTotal=0;
+        equipo=id.slice(0,1);
+        for (var i=1; i<12;i++) {
+            suma=$$('[id="'+equipo+i+'"]').html();
+            if (suma!='X') {
+            suma=parseInt(suma);
+            sumaTotal+=suma;    
+            }
+        }
+        $$('[id="total'+equipo+'"]').html(sumaTotal);
+    }
+    function fnFin () {
+        cantDeCeldas=0;
+        for (var i=1; i<12;i++) {
+            suma=$$('[id="'+'1'+i+'"]').html();
+            if (suma!=0) {
+                cantDeCeldas+=1;
+            }}
+            for (var i=1; i<12;i++) {
+            suma=$$('[id="'+'2'+i+'"]').html();
+            if (suma!=0) {
+                cantDeCeldas+=1;
+            }}
+        if (cantDeCeldas==22) {
+            console.log('ganaste');
+            total1= $$('#total1').html();
+            total2= $$('#total2').html();
+             mainView.router.navigate('/fin/');
+        }
+
+    }
