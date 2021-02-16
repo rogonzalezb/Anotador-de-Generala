@@ -95,6 +95,7 @@ $$(document).on('page:init', '.page[data-name="juego"]', function (e) {
             app.popover.close(".popover" , "animate");
         })
 
+        $$('#limpiar').on('click', fnLimpiar)
 })
 
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
@@ -106,6 +107,16 @@ $$(document).on('page:init', '.page[data-name="index"]', function (e) {
 $$(document).on('page:init', '.page[data-name="fin"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     console.log(e);
+    $$('#j1').html(jugador1 + " " + total1);
+    $$('#j2').html(jugador2 + " " + total2);
+    if (total1>total2) {
+       $$('#ganador1').html("Ganador " + jugador1);
+
+    }
+    else {
+        $$('#ganador1').html("Ganador " + jugador2);
+    }
+
 })
 
 
@@ -186,7 +197,13 @@ function fnFiguras (id) {
             console.log('ganaste');
             total1= $$('#total1').html();
             total2= $$('#total2').html();
-             mainView.router.navigate('/fin/');
+            mainView.router.navigate('/fin/');
         }
 
+    }
+    function fnLimpiar() {
+        $$('.numero').html(0);
+        $$('.figura').html(0);
+        $$('#total1').html(0);
+        $$('#total2').html(0);
     }
