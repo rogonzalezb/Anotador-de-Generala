@@ -25,16 +25,15 @@
         path: '/index/',
         url: 'index.html',
       },
-    ]
-
+    ],
 
     // ... other parameters
   });
 
   var mainView = app.views.create('.view-main');
 
-  var jugador1 = "";
-  var jugador2 = "";
+  var jugador1 = "Jugador 1";
+  var jugador2 = "Jugador 2";
   var valor = "";
   var cant = "";
   var idActual = "";
@@ -102,7 +101,8 @@
       app.popover.close(".popover", "animate");
     })
 
-    $$('#limpiar').on('click', fnLimpiar)
+    $$('#limpiar').on('click', fnLimpiar);
+    $$('#terminar').on('click',fnFinalDelJuego);
   })
 
   $$(document).on('page:init', '.page[data-name="index"]', function(e) {
@@ -114,21 +114,22 @@
   $$(document).on('page:init', '.page[data-name="fin"]', function(e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     console.log(e);
-    $$('#j1').html(jugador1 + " " + total1);
-    $$('#j2').html(jugador2 + " " + total2);
+    $$('#j1').html(jugador1 + ": " + total1);
+    $$('#j2').html(jugador2 + ": " + total2);
     if (total1 > total2) {
-      $$('#ganador1').html("Ganador " + jugador1);
-
+      $$('#ganador1').html("Ganador== " + jugador1);
+    } else if (total1 < total2) {
+      $$('#ganador1').html("Ganador== " + jugador2);
     } else {
-      $$('#ganador1').html("Ganador " + jugador2);
+        $$('#ganador1').html("No hay ganador");
     }
 
   })
 
 
   function fnNombre() {
-    jugador1 = $$('#jugador1').val();
-    jugador2 = $$('#jugador2').val();
+    if ($$('#jugador1').val()!='') { jugador1 = $$('#jugador1').val()};
+    if ($$('#jugador2').val()!='') {jugador2 = $$('#jugador2').val()};
     mainView.router.navigate('/juego/');
   }
 
@@ -138,7 +139,7 @@
     valor = parseInt(valor);
     idActual = id;
     // selector de ppvr q abro, selector para marcar altura, boolean
-    app.popover.open("[data-popover = 'popUno']", ".page-content", "animate");
+    app.popover.open("[data-popover = 'popUno']","body", "animate");
     // app.popover.open("[data-popover = 'popDos']", ".page-current", "animate");
     //esto va acá adentro para que funcione, no mover!
   };
@@ -206,13 +207,10 @@
         cantDeCeldas += 1;
       }
     }
-    if (cantDeCeldas == 22) {
+    if (cantDeCeldas == 3) {
       console.log('ganaste');
-      total1 = $$('#total1').html();
-      total2 = $$('#total2').html();
-      mainView.router.navigate('/fin/');
+      fnFinalDelJuego();
     }
-
   }
 
   function fnLimpiar() {
@@ -221,3 +219,9 @@
     $$('#total1').html(0);
     $$('#total2').html(0);
   }
+
+function fnFinalDelJuego () {
+     total1 = $$('#total1').html();
+    total2 = $$('#total2').html();
+    mainView.router.navigate('/fin/');
+}

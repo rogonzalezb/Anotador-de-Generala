@@ -1,94 +1,95 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
-<div class="page no-navbar" data-name="juego">
+<div class="page" data-name="juego">
   <div class="page-content">
-    <div class="navbar ">
+    <div class="navbar">
       <div class="navbar-inner sliding">
         <div class="left">
           <a href="#" class="link back">
             <i class="icon icon-back"></i>
-            <span class="ios-only">Back</span>
+            <span class="ios-only">Volver</span>
           </a>
         </div>
         <div class="title">Volver</div>
+        <div class="row right">
+            <button id="limpiar" class="col button button-fill button-round align-self-center">LIMPIAR</button>
+             <button id="terminar" class="col button button-fill button-round align-self-center">Terminar</button>
+        </div>
       </div>
     </div>
 
     <!--  <div class="block-title">Juego</div> -->
-    <div class="">
-      <div class="data-table">
-        <table>
+      <div class="data-table display-flex flex-direction-column justify-content-space-around align-items-center">
+        <table class="text-align-center">
           <thead>
             <tr>
-              <th class="label-cell">Categorías</th>
-              <th id="muestraJ1" class="label-cell"></th>
-              <th id="muestraJ2" class="label-cell"></th>
+              <th class="label-cell text-align-left">Categorías</th>
+              <th id="muestraJ1" class="label-cell">Jugador 1</th>
+              <th id="muestraJ2" class="label-cell">Jugador 2</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="label-cell">1</td>
+              <td class="label-cell text-align-left">1</td>
               <td id="11" class="label-cell numero">0</td>
               <td id="21" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">2</td>
+              <td class="label-cell text-align-left">2</td>
               <td id="12" class="label-cell numero">0</td>
               <td id="22" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">3</td>
+              <td class="label-cell text-align-left">3</td>
               <td id="13" class="label-cell numero">0</td>
               <td id="23" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">4</td>
+              <td class="label-cell text-align-left">4</td>
               <td id="14" class="label-cell numero">0</td>
               <td id="24" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">5</td>
-              <td id="15" class="label-cell numero celda5-1">0</td>
+              <td class="label-cell text-align-left">5</td>
+              <td id="15" class="label-cell numero">0</td>
               <td id="25" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">6</td>
+              <td class="label-cell text-align-left">6</td>
               <td id="16" class="label-cell numero">0</td>
               <td id="26" class="label-cell numero">0</td>
             </tr>
             <tr>
-              <td class="label-cell">doble</td>
+              <td class="label-cell text-align-left">Doble</td>
               <td id="17" class="label-cell figura">0</td>
               <td id="27" class="label-cell figura">0</td>
             </tr>
             <tr>
-              <td class="label-cell">escalera</td>
+              <td class="label-cell text-align-left">Escalera</td>
               <td id="18" class="label-cell figura">0</td>
               <td id="28" class="label-cell figura">0</td>
             </tr>
             <tr>
-              <td class="label-cell">Full</td>
+              <td class="label-cell text-align-left">Full</td>
               <td id="19" class="label-cell figura">0</td>
               <td id="29" class="label-cell figura">0</td>
             </tr>
             <tr>
-              <td class="label-cell">Poker</td>
+              <td class="label-cell text-align-left">Poker</td>
               <td id="110" class="label-cell figura">0</td>
               <td id="210" class="label-cell figura">0</td>
             </tr>
             <tr>
-              <td class="label-cell">Generala</td>
+              <td class="label-cell text-align-left">Generala</td>
               <td id="111" class="label-cell figura">0</td>
               <td id="211" class="label-cell figura">0</td>
             </tr>
             <tr>
-              <td class="label-cell">Total</td>
+              <td class="label-cell text-align-left">Total</td>
               <td id="total1" class="label-cell">0</td>
               <td id="total2" class="label-cell">0</td>
             </tr>
           </tbody>
         </table>
-
-        <button id="limpiar" class="col button button-outline">LIMPIAR</button>
 
         <div class="popover popover-links open-popover popover-on-middle popover-on-center" data-popover="popUno">
           <div class="popover-inner">
@@ -129,7 +130,6 @@
         <div class="popover popover-links open-popover" data-popover="popDos">
           <div class="popover-inner">
             <div class="list">
-              <!--Botones verticales NO QUITAR ETIQUETAS p-->
               <div class="block-title">Juegos Mayores
                 <div class="block block-strong">
                   <p>
@@ -149,8 +149,6 @@
             </div>
           </div>
         </div>
-
       </div>
-    </div>
   </div>
 </div>

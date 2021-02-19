@@ -9,11 +9,21 @@ body {
   margin: 0 auto;
   /* width: 50vw; */
 }
-
-/* .contenedorPadre {
-  height: 100vh;
-} */
-
+.label-cell {
+  cursor: pointer;
+}
+#muestraJ1 {
+  font-size: 1rem;
+} 
+#muestraJ2 {
+  font-size: 1rem;
+}
+.popover {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate( -50%, -50%) !important;
+}
 .page-content {
   background-color: #f6f6f6;
 }
@@ -23,8 +33,6 @@ h1 {
   font-size: 2rem;
   color: #19456b;
 }
-
-
 .list ul {
   background: none;
 }
