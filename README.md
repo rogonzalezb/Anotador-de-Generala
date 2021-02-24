@@ -1,0 +1,1 @@
+Generala en F7
