@@ -137,7 +137,8 @@
     $$('#j1').html(jugador1 + ": " + total1 + ' puntos.');
 
     $$('#j2').html(jugador2 + ": " + total2 + ' puntos.');
-
+    total1=parseInt(total1);
+    total2=parseInt(total2);
     if (total1 > total2) {
       $$('#ganador1').html("Ganador: " + jugador1 + "!");
       $$('.copa').attr('src', 'img/copa2.png');
@@ -148,7 +149,6 @@
       $$('#ganador1').html("No hay ganador");
       $$('.copa').attr('src', 'img/empate.png').addClass('empate').removeClass('copa');
     }
-
     $$('#volverInicio').on('click', function() {
       fnLimpiar();
       $$('#jugador1').val('');
